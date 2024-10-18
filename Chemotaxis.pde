@@ -3,19 +3,20 @@ PImage moneyImg;
 void setup() {
 
   size(800, 800);
-  background(255);
+  background(206,146,48);
   //goons = new Creature[(int)(Math.random()*200)];
 
   goons = new Creature[4];
   for (int i = 0; i < goons.length; i++) {
-    goons[i] = new Creature(400, 400, randomColor, (int)(Math.random()*20));
+    randomColor = color((int)(Math.random()*255+90), (int)(Math.random()*255+60            ), (int)(Math.random()*255+1));
+    goons[i] = new Creature(400, 400, randomColor, (int)(Math.random()*10+10));
   }
   moneyImg = loadImage("money-wings.png");
 }
 int cycles = 0;
 int randomColor = color((int)(Math.random()*255+90), (int)(Math.random()*255+60            ), (int)(Math.random()*255+1));
 void draw() {
-  background(255);
+  background(206,146,48);
  image(moneyImg,mouseX-20,mouseY-20,50,50);
   for (int i = 0; i < goons.length; i++) {
     goons[i].move();
