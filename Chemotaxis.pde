@@ -3,7 +3,7 @@ PImage moneyImg;
 void setup() {
 
   size(800, 800);
-  background(206,146,48);
+  background(206, 146, 48);
   //goons = new Creature[(int)(Math.random()*200)];
 
   goons = new Creature[4];
@@ -15,18 +15,34 @@ void setup() {
 }
 int cycles = 0;
 int randomColor = color((int)(Math.random()*255+90), (int)(Math.random()*255+60            ), (int)(Math.random()*255+1));
+
+boolean stolen = false;
 void draw() {
-  background(206,146,48);
- image(moneyImg,mouseX-20,mouseY-20,50,50);
+  background(206, 146, 48);
+
   for (int i = 0; i < goons.length; i++) {
     goons[i].move();
     goons[i].show();
+    if (dist(mouseX, mouseY, goons[i].myX, goons[i].myY) < 20) {
+      //System.out.println("money stolen");
+      stolen = true;
+      noLoop();
+      if(goons[i].orientation == true){
+        image(moneyImg, 281-318+goons[i].myX-20, 274-281+goons[i].myY-20, 50, 50);
+      }else{
+        image(moneyImg, 281-318+goons[i].myX+50, 274-281+goons[i].myY-20, 50, 50);
+      }
+
+      
+    }
   }
-  
+  if (stolen == false)image(moneyImg, mouseX-20, mouseY-20, 50, 50);
 }
-boolean clicked = false;
+
 void mousePressed() {
-  clicked = true;
+  loop();
+
+  stolen = false;
 
 
   randomColor = color((int)(Math.random()*255+90), (int)(Math.random()*255+1), (int)(Math.random()*255+1));
