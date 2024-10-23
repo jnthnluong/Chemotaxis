@@ -29,7 +29,7 @@ void draw() {
     if (dist(mouseX, mouseY, goons[i].myX, goons[i].myY) < 20 && goons[i].myLifespan > 1) {
       //System.out.println("money stolen");
       if ((int)(Math.random()*100) > 97) {
-        goons[storedCreatures] = new Creature(goons[i].myX+(int)(Math.random()*100-50), goons[i].myY+(int)(Math.random()*100-50), randomColor, (int)(Math.random()*6+7), 15+(int)(Math.random()*18-9));
+        goons[storedCreatures] = new Creature(goons[i].myX+(int)(Math.random()*80-40), goons[i].myY+(int)(Math.random()*80-40), randomColor, (int)(Math.random()*6+7), 15+(int)(Math.random()*18-9));
         storedCreatures++;
       }
 
@@ -48,7 +48,7 @@ void draw() {
 }
 void mousePressed() {
   loop();
-
+  //ellipse(400,400,50,50);
   stolen = false;
 
 
@@ -56,11 +56,12 @@ void mousePressed() {
 }
 boolean isLoop = true;
 void keyPressed() {
+  //ellipse(400,400,50,50);
   System.out.println(keyCode);
-  if (keyCode == 32&&isLoop == true) {
+  if (keyCode == 69 && isLoop == true) {
     noLoop();
     isLoop = false;
-  } else if (keyCode == 32 && isLoop == false) {
+  } else if (keyCode == 69 && isLoop == false) {
     loop();
     isLoop = true;
   }
