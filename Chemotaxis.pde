@@ -9,7 +9,7 @@ void setup() {
   goons = new Creature[60000];
   for (int i = 0; i < 6; i++) {
 
-    randomColor = color((int)(Math.random()*255+150), (int)(Math.random()*255+30), (int)(Math.random()*255+60));
+    randomColor = color((int)(Math.random()*255+150), (int)(Math.random()*255+90), (int)(Math.random()*255+30));
     goons[i] = new Creature(400, 400, randomColor, (int)(Math.random()*6+7), 15+(int)(Math.random()*18-9));
   }
 }
@@ -21,7 +21,7 @@ boolean stolen = false;
 int storedCreatures = 6;
 void draw() {
   background(206, 146, 48);
-  randomColor = color((int)(Math.random()*255+150), (int)(Math.random()*255+30), (int)(Math.random()*255+60));
+  randomColor = color((int)(Math.random()*255+150), (int)(Math.random()*255+90), (int)(Math.random()*255+30));
   for (int i = 0; i < storedCreatures; i++) {
     goons[i].move();
     goons[i].show();
@@ -43,7 +43,7 @@ void draw() {
       }
     }
     //if (stolen == false)image(moneyImg, mouseX-20, mouseY-20, 50, 50);
-    image(moneyImg, mouseX-20, mouseY-20, 50, 50);
+    image(moneyImg, mouseX-10, mouseY-10, 25, 25);
   }
 }
 void mousePressed() {
@@ -58,10 +58,10 @@ boolean isLoop = true;
 void keyPressed() {
   //ellipse(400,400,50,50);
   System.out.println(keyCode);
-  if (keyCode == 69 && isLoop == true) {
+  if (keyCode == 32 && isLoop == true) { //spacebar to freeze the people
     noLoop();
     isLoop = false;
-  } else if (keyCode == 69 && isLoop == false) {
+  } else if (keyCode == 32 && isLoop == false) {
     loop();
     isLoop = true;
   }
