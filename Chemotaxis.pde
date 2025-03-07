@@ -69,7 +69,7 @@ public void draw ()
   // System.out.println(buttonsFlagged);
   // System.out.println(mines.size() + " mines");
   // System.out.println(buttonsClicked);
-  background( 0 );
+  background( #44B736 );
 
   if (isWon() == true)
     displayWinningMessage();
@@ -174,7 +174,6 @@ public void keyPressed() {
       toggleBombs(true);
     }
   }
-  
 }
 
 public class MSButton
@@ -232,7 +231,7 @@ public class MSButton
 
 
 
-    if (mouseButton == RIGHT && !showing) {
+    if (mouseButton == RIGHT && !showing && !isLost) {
 
       flagged = !flagged;
 
@@ -256,7 +255,10 @@ public class MSButton
   }
   public void draw () 
   {
-    if(isWon()){
+    if (isLost) {
+      myColor = 0;
+    }
+    if (isWon()) {
       isFlower = true;
     }
 
@@ -271,11 +273,16 @@ public class MSButton
       fill(110, 255, 100);
       if (myCol%2 == 0 || myRow%2 == 0) fill(#22C95B);
     }
-    
+
     if (isWon() == true) {
       fill(0, 255, 0);
     }
-
+    if (isLost) {
+      fill(#79654F);
+      if (myCol%2 == 0 || myRow%2 == 0) fill(#676057);
+    }
+    if ( clicked && mines.contains(this) ) 
+      fill(255, 0, 0);
     rect(x, y, width, height);
     if (myValue == 1) fill(0, 0, 255);
     if (myValue == 2) fill(#37A042);
@@ -290,8 +297,8 @@ public class MSButton
       ellipse(x+width/1.5-4, y+height/2, 10, 10+10);
       ellipse(x+width/1.5-4, y+height/2, 10+10, 10);
       fill(#FEFFBC);
+      if (isLost) fill(#463E3E);
       ellipse(x+width/1.5-4, y+height/2, 10, 10);
-      
     }
     textSize(width/1.5);
     text(myLabel, x+width/2+0.5, y+height/2-1);
